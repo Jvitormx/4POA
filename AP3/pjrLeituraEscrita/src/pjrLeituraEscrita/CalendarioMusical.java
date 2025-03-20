@@ -25,7 +25,7 @@ public class CalendarioMusical {
             switch(opcao){
                 case 1: //adiciona musica
                 	try{
-                        FileWriter escrita = new FileWriter("/home/jvtrx/4poa/musicas.txt", true);
+                        FileWriter escrita = new FileWriter("/musicas.txt", true);
                         BufferedWriter bwEscrita = new BufferedWriter(escrita);
 
                         System.out.print("Digite a data (DD-MM-AAAA): ");
@@ -55,7 +55,7 @@ public class CalendarioMusical {
                     break;
                 case 2: //lista todas as musicas
                 	 try{
-                         FileReader leitura = new FileReader("/home/jvtrx/4poa/musicas.txt");
+                         FileReader leitura = new FileReader("/musicas.txt");
                          BufferedReader brLeitura = new BufferedReader(leitura);
 
                          System.out.println("\nMusicas registradas");
@@ -83,7 +83,7 @@ public class CalendarioMusical {
                     try{
                         System.out.println("\n Músicas favoritas do mes " + mesDigitado + "");
 
-                        FileReader leituraFav = new FileReader("/home/jvtrx/4poa/musicas.txt");
+                        FileReader leituraFav = new FileReader("/musicas.txt");
                         BufferedReader brLeituraFav = new BufferedReader(leituraFav);
 
                         while(brLeituraFav.ready()){
