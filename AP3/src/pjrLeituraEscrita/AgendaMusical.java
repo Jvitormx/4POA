@@ -17,7 +17,7 @@ public class AgendaMusical {
             System.out.println("\nAgenda de Músicas");
             System.out.println("1 - Adicionar uma nova musica");
             System.out.println("2 - Consultar todas as musicas");
-            System.out.println("3 - Consultar músicas por mes");
+            System.out.println("3 - Consultar musicas por mes");
             System.out.println("4 - Consultar músicas por status");
             System.out.println("5 - Sair");
             System.out.print("Escolha uma opção: ");
@@ -26,28 +26,51 @@ public class AgendaMusical {
             scanner.nextLine();
 
             switch(opcao){
-                case 1: //adiciona musica na agenda referente a data atual
+                case 1: //adicionar musica na agenda referente a data atual ou data futura
                 	try{
 
                         FileWriter escrita = new FileWriter("/home/jvtrx/4poa/musicas.txt", true);
                         BufferedWriter bwEscrita = new BufferedWriter(escrita);
-
-                        LocalDate dataAtual = LocalDate.now();
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                        String data = dataAtual.format(formatter);
+                        
+                        System.out.print("Nova musica [1] | Novo evento [2]: ");
+                        int evento = scanner.nextInt();
+                        scanner.nextLine();
+                        
+                        String data;
+                        
+                        if(evento == 1) {
+                        	LocalDate dataAtual = LocalDate.now();
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                            data = dataAtual.format(formatter);
+                        }else {
+                        	 System.out.print("Digite a data no formato DD-MM-AAAA: ");
+                            data = scanner.nextLine();
+                        }
 
                         System.out.print("Digite o nome do artista: ");
                         String artista = scanner.nextLine();
 
                         System.out.print("Digite o nome da musica: ");
                         String musica = scanner.nextLine();
+                        
+                        int nota;
 
-                        System.out.print("Nota de 0 a 10: ");
-                        int nota = scanner.nextInt();
-                        scanner.nextLine();
+                        if(evento==1) {
+                        	System.out.print("Nota de 0 a 10: ");
+                            nota = scanner.nextInt();
+                            scanner.nextLine();
+                        }else {
+                        	nota = 0;
+                        }
+                        
+                        String status;
 
-                        System.out.print("Status (Ouvi, Ouvi pela metade, etc.): ");
-                        String status = scanner.nextLine();
+                        if(evento==1) {
+                        	System.out.print("Status (Ouvi, Ouvi pela metade, etc.): ");
+                        	status = scanner.nextLine();
+                        }else {
+                        	status = "Ouvir";
+                        }
 
                         String linha = data + " - " + artista + " - " + musica + " - Nota: " + nota + " - " + status;
                         bwEscrita.write(linha);
@@ -62,7 +85,7 @@ public class AgendaMusical {
                         e.printStackTrace();
                     }
                     break;
-                case 2: //lista musicas
+                case 2: //listar todas as musicas
                 	try{
                         FileReader leitura = new FileReader("/home/jvtrx/4poa/musicas.txt");
                         BufferedReader brLeitura = new BufferedReader(leitura);
@@ -82,7 +105,7 @@ public class AgendaMusical {
                         e.printStackTrace();
                     }
                     break;
-                case 3: //lista musica por mes
+                case 3: //listar musica por mes
                 	System.out.print("Digite o mes que deseja consultar (MM): ");
                     String mesDigitado = scanner.nextLine();
 
@@ -111,7 +134,7 @@ public class AgendaMusical {
                         e.printStackTrace();
                     }
                     break;
-                case 4: //lista musica por status
+                case 4: //listar musica por status
                 	System.out.print("Digite o status que deseja consultar (Ouvi, Pela metade, Outra vez, etc.): ");
                     String statusDigitado = scanner.nextLine();
 
