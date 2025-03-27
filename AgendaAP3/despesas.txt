@@ -1,5 +1,0 @@
-sao paulo;hospedagem;350.0
-sao paulo;alimentacao;200.0
-sao paulo;passeio;100.0
-rio de janeiro;show;200.0
-rio de janeiro;alimentacao;80.0
